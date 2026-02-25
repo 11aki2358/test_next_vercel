@@ -10,10 +10,17 @@ export async function PUT(request, context) {
     // https://monotein-books.netlify.app/nextjs-react-book-additional-info-1
     const params = await context.params;
     const singleItem = await ItemModel.findById(params.id);
-    if (singleItem.email === reqBody.email) {
+    if (singleItem.userID === reqBody.userID) {
+
+      var now = new Date();
+      var nowTime = now.toLocaleString();
+      // var now_time = nowTime;
+      reqBody.editDate = nowTime;
+
       await ItemModel.updateOne({ _id: params.id }, reqBody);
+
       return NextResponse.json({ message: "アイテム編集ok" });
-    }else{
+    } else {
       return NextResponse.json({ message: "アイテム編集不可(他の人が作成したアイテムです" });
     }
 

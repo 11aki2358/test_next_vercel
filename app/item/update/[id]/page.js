@@ -5,13 +5,14 @@ import useAuth from "../../../utils/useAuth"
 
 const UpdateItem = (context) => {
   const [title, setTitle] = useState("")
-  const [price, setPrice] = useState("")
+  const [postDate, setpostDate] = useState("")
+  const [editDate, setEditDate] = useState("")
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
-  const [email, setEmail] = useState("")
+  const [userID, setuserID] = useState("")
 
   const router = useRouter()
-  const loginUserEmail = useAuth()
+  const loginUseruserID = useAuth()
 
   useEffect(() => {
     const getSingleItem = async () => {
@@ -20,10 +21,11 @@ const UpdateItem = (context) => {
       const jsonData = await response.json()
       const singleItem = jsonData.singleItem
       setTitle(singleItem.title)
-      setPrice(singleItem.price)
+      setpostDate(singleItem.postDate)
+      setEditDate(singleItem.editDate)
       setImage(singleItem.image)
       setDescription(singleItem.description)
-      setEmail(singleItem.email)
+      setuserID(singleItem.userID)
     }
     getSingleItem()
   }, [context])
@@ -41,10 +43,11 @@ const UpdateItem = (context) => {
         },
         body: JSON.stringify({
           title: title,
-          price: price,
+          postDate: postDate,
+          editDate: editDate,
           image: image,
           description: description,
-          email: loginUserEmail
+          userID: loginUseruserID
         })
       })
       const jsonData = await response.json()
@@ -56,14 +59,14 @@ const UpdateItem = (context) => {
     }
   }
 
-  if (loginUserEmail === email) {
+  if (loginUseruserID === userID) {
     return (
       <div>
         <h1 className="page-title">アイテム編集</h1>
         <form onSubmit={handleSubmit}>
           <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="アイテム名" required />
-          <input value={price} onChange={(e) => setPrice(e.target.value)} type="text" name="price" placeholder="価格" required />
-          <input value={image} onChange={(e) => setImage(e.target.value)} type="text" name="image" placeholder="画像" required />
+          {/* <input value={postDate} onChange={(e) => setpostDate(e.target.value)} type="text" name="postDate" placeholder="投稿日" required /> */}
+          {/* <input value={image} onChange={(e) => setImage(e.target.value)} type="text" name="image" placeholder="画像" required /> */}
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} name="description" rows={15} placeholder="商品説明" required></textarea>
           <button>編集</button>
         </form>

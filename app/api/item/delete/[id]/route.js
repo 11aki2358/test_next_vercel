@@ -12,7 +12,7 @@ export async function DELETE(request, context) {
     const params = await context.params;
     const singleItem = await ItemModel.findById(params.id);
 
-    if (singleItem.email === reqBody.email){
+    if (singleItem.userID === reqBody.userID){
       await ItemModel.deleteOne({ _id: params.id });
       return NextResponse.json({ message: "削除成功" });
     }else{

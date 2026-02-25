@@ -8,7 +8,7 @@ export async function POST(request) {
   const reqBody = await request.json()
   try {
     await connectDB()
-    const savedUserData = await UserModel.findOne({ email: reqBody.email })
+    const savedUserData = await UserModel.findOne({ userID: reqBody.userID })
     if (savedUserData) {
       // ユーザーデータが存在する場合の処理
       if (reqBody.password === savedUserData.password) {
@@ -17,7 +17,7 @@ export async function POST(request) {
         const secretKey = new TextEncoder().encode("next-market-app-book")
 
         const payload = {
-          email: reqBody.email
+          userID: reqBody.userID
         }
 
         const token = await new SignJWT(payload)

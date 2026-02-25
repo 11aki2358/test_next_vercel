@@ -18,21 +18,21 @@ const ReadSingleItem = async (context) => {
   const singleItem = await getSingleItem(params.id);
   return (
     <div>
-      <h1>個別ページ</h1>
-      
       <div>
-        <Image src={singleItem.image} width={750} height={500} alt="item_image" priority />
+        {/* <Image src={singleItem.image} width={750} height={500} alt="item_image" priority /> */}
       </div>
       <div>
         <h1>{singleItem.title}</h1>
-        <h2>\{singleItem.price}</h2>
+        <div className="date">投稿日: {singleItem.postDate}</div>
+        <div className="date">更新日: {singleItem.editDate}</div>
         <hr></hr>
         <p>
           {singleItem.description}
         </p>
         <div>
-          <Link href={`/item/update/${singleItem._id}`}>アイテム編集</Link>
-          <Link href={`/item/delete/${singleItem._id}`}>アイテム削除</Link>
+          <Link href={`/item/update/${singleItem._id}`}>編集</Link>
+          /
+          <Link href={`/item/delete/${singleItem._id}`}>削除</Link>
         </div>
       </div>
 

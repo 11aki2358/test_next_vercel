@@ -5,9 +5,10 @@ const Schema = mongoose.Schema;
 const ItemSchema = new Schema({
   title: String,
   image: String,
-  price: String,
+  postDate: String,
+  editDate: String,
   description: String,
-  email: String,
+  userID: String,
 })
 
 
@@ -16,7 +17,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  email: {
+  userID: {
     type: String,
     required: true,
     unique: true

@@ -3,7 +3,7 @@ import { useState } from "react"
 
 const Register = () => {
   const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
+  const [userID, setUserID] = useState("")
   const [password, setPassword] = useState("")
 
   const handleSubmit = async (e) => {
@@ -17,7 +17,7 @@ const Register = () => {
         },
         body: JSON.stringify({
           name: name,
-          email: email,
+          userID: userID,
           password: password
         })
       })
@@ -33,7 +33,9 @@ const Register = () => {
       <h1 className="page-title">ユーザー登録</h1>
       <form onSubmit={handleSubmit}>
         <input value={name} onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="名前" required />
-        <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレス" required />
+
+        <input value={userID} onChange={(e) => setUserID(e.target.value)} type="text" name="userID" placeholder="ユーザーID" required />
+        
         <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="パスワード" required />
         <button>登録</button>
       </form>

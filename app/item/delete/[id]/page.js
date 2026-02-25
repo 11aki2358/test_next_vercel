@@ -6,13 +6,14 @@ import useAuth from "../../../utils/useAuth"
 
 const DeleteItem = (context) => {
   const [title, setTitle] = useState("")
-  const [price, setPrice] = useState("")
+  const [postDate, setpostDate] = useState("")
+  const [editDate, setEditDate] = useState("")
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
-  const [email, setEmail] = useState("")
+  const [userID, setuserID] = useState("")
 
   const router = useRouter()
-  const loginUserEmail = useAuth()
+  const loginUseruserID = useAuth()
 
   useEffect(() => {
     const getSingleItem = async () => {
@@ -21,10 +22,11 @@ const DeleteItem = (context) => {
       const jsonData = await response.json()
       const singleItem = jsonData.singleItem
       setTitle(singleItem.title)
-      setPrice(singleItem.price)
+      setpostDate(singleItem.postDate)
+      setEditDate(singleItem.editDate)
       setImage(singleItem.image)
       setDescription(singleItem.description)
-      setEmail(singleItem.email)
+      setuserID(singleItem.userID)
     }
     getSingleItem()
   }, [context])
@@ -41,7 +43,7 @@ const DeleteItem = (context) => {
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
-          email: loginUserEmail
+          userID: loginUseruserID
         })
       })
       const jsonData = await response.json()
@@ -53,14 +55,15 @@ const DeleteItem = (context) => {
     }
   }
 
-  if (loginUserEmail === email) {
+  if (loginUseruserID === userID) {
     return (
       <div>
         <h1 className="page-title">アイテム削除</h1>
         <form onSubmit={handleSubmit}>
           <h2>{title}</h2>
-          <Image src={image} width={750} height={500} alt="item-image" priority />
-          <h3>¥{price}</h3>
+          {/* <Image src={image} width={750} height={500} alt="item-image" priority /> */}
+          <div className="date">投稿日: {postDate}</div>
+          <div className="date">更新日: {editDate}</div>
           <p>{description}</p>
           <button>削除</button>
         </form>

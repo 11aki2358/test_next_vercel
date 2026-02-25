@@ -6,6 +6,8 @@ import { UserModel } from "../../../utils/schemaModels";
 export async function POST(request) {
   const reqBody = await request.json();
 
+  console.log(reqBody);
+
   try{
     await connectDB();
     await UserModel.create(reqBody);

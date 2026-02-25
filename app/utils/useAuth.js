@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation"
 import { jwtVerify } from "jose"
 
 const useAuth = () => {
-  const [loginUserEmail, setLoginUserEmail] = useState("")
+  const [loginUseruserID, setLoginUseruserID] = useState("")
 
   const router = useRouter()
 
@@ -18,7 +18,7 @@ const useAuth = () => {
       try {
         const secretKey = new TextEncoder().encode("next-market-app-book")
         const decodedJwt = await jwtVerify(token, secretKey)
-        setLoginUserEmail(decodedJwt.payload.email)
+        setLoginUseruserID(decodedJwt.payload.userID)
       } catch {
         router.push("/user/login")
       }
@@ -26,7 +26,7 @@ const useAuth = () => {
     checkToken()
   }, [router])
 
-  return loginUserEmail
+  return loginUseruserID
 }
 
 export default useAuth
