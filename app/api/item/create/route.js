@@ -14,9 +14,10 @@ export async function POST(request) {
     await connectDB();
 
     var now = new Date();
-    var nowTime = now.toLocaleString();
+    var nowTimeUTC = now.toUTCString();
+    var nowTimeJST = new Date(nowTimeUTC + 9 * 60 * 60 * 1000);
     // var now_time = nowTime;
-    reqBody.postDate = nowTime;
+    reqBody.postDate = `${nowTimeJST.getFullYear()}.${nowTimeJST.getMonth()}.${nowTimeJST.getDay()} ${nowTimeJST.getHours()}:${nowTimeJST.getMinutes()}:${nowTimeJST.getSeconds()}`;
     
     await ItemModel.create(reqBody);
 
