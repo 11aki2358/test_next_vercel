@@ -3,10 +3,10 @@ import { jwtVerify } from "jose";
 
 export async function proxy(request) {
 
-  // const token = await request.headers.get("Authorization")?.split(" ")[1];
+  const token = await request.headers.get("Authorization")?.split(" ")[1];
 
   //確認用
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiZXhwIjoxNzcyMjU5OTA3fQ.fG0M0hhFTJetgxWdFodmPxO06Uvgh73DXDTdQpIdsWA";
+  // const token = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imh1Z2FAZ21haWwuY29tIiwiZXhwIjoxNzcyMDkwNzA4fQ._LYxgGxvDKqdi7GzBrm09v1SR7OUhbqQAPkJTbjSDSU";
 
   if (!token) {
     return NextResponse.json({ message: "トークンがありません" })
