@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server"
-import { SignJWT } from "jose"
+import { SignJWT } from "jose"  
 import connectDB from "../../../utils/database"
-import { UserModel } from "../../../utils/schemaModels"
+import { UserModel } from "../../../utils/schemaModels"  
+
 
 export async function POST(request) {
   const reqBody = await request.json()
