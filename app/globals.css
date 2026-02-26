@@ -42,7 +42,7 @@ body header {
   grid-column: 1/1;
   width: 90vw;
   position: fixed;
-  height: 6rem;
+  height: 6.5rem;
   z-index: 10;
   background-color: var(--type1-base-color);
   /* background-color: antiquewhite; */
@@ -95,6 +95,8 @@ header * li a {
   color: black;
   border-bottom: black solid 2px;
   border-right: black dashed 2px;
+  padding-bottom: .2rem;
+  padding-top: .2rem;
 }
 
 /* footer.js */
@@ -173,6 +175,14 @@ a {
   margin-right: auto;
   font-weight: bold;
   color: var(--type1-main-color);
+  margin-top: 1rem;
+}
+
+
+.article a,
+.singleArticle a{
+  color: var(--type1-main-color);
+  font-weight: bold;
 }
 
 /* いちらんページ */
@@ -184,6 +194,7 @@ a {
   padding-left: 1rem;
   border-left: black solid 2px;
 }
+
 
 .article h2,
 .singleArticle h2 {
@@ -212,6 +223,10 @@ a {
 
 .singleArticle {
   margin: 1.5rem;
+}
+
+.singleArticle a{
+  color: var(--type1-main-color);
 }
 
 .forOwner {
@@ -265,6 +280,19 @@ a {
   background-color: var(--type1-main-color);
   border: black solid;
   font-weight: bold;
+}
+
+.post_button:hover{
+  cursor: pointer;
+}
+
+
+.delete_button{
+  padding: .2rem .5rem;
+  background-color: black;
+  border: black solid;
+  font-weight: bold;
+  color: white;
 }
 
 .post_button:hover{

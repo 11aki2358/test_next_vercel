@@ -2,11 +2,26 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import useAuth from "../../../utils/useAuth"
+import Link from "next/link";
+
+
+function insertAlink() {
+  var area = document.getElementById('text_area');
+  var text1 = " [[ ";
+  var text2 = ' ]] ';
+
+  //カーソルの開始位置と終了位置を基準に分割
+  area.value = area.value.substr(0, area.selectionStart) +
+    text1 +
+    area.value.substr(area.selectionStart, area.selectionEnd - area.selectionStart) +
+    text2 +
+    area.value.substr(area.selectionEnd);
+}
 
 const UpdateItem = (context) => {
   const [title, setTitle] = useState("")
-  const [postDate, setpostDate] = useState("")
-  const [editDate, setEditDate] = useState("")
+  const [postDate, setpostDate] = useState("") //  バックエンドで記入
+  const [editDate, setEditDate] = useState("") //  バックエンドで記入
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
   const [userID, setuserID] = useState("")
@@ -61,15 +76,43 @@ const UpdateItem = (context) => {
 
   if (loginUseruserID === userID) {
     return (
-      <div>
-        <h1 className="page-title">アイテム編集</h1>
-        <form onSubmit={handleSubmit}>
-          <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="アイテム名" required />
-          {/* <input value={postDate} onChange={(e) => setpostDate(e.target.value)} type="text" name="postDate" placeholder="投稿日" required /> */}
-          {/* <input value={image} onChange={(e) => setImage(e.target.value)} type="text" name="image" placeholder="画像" required /> */}
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} name="description" rows={15} placeholder="商品説明" required></textarea>
-          <button>編集</button>
-        </form>
+      <div className="main">
+        <h2>編集</h2>
+
+        <div>
+          <form onSubmit={handleSubmit}>
+
+            <div className="input_title">
+              <h3>タイトル</h3>
+              <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="タイトル" required />
+            </div>
+
+            {/* <input value={postDate} onChange={(e) => setpostDate(e.target.value)} type="text" name="postDate" placeholder="投稿日" required /> */}
+            {/* <input value={image} onChange={(e) => setImage(e.target.value)} type="text" name="image" placeholder="画像" required /> */}
+
+            <div className="input_main">
+              <h3>本文</h3>
+
+              <div className="insertAlink">
+                <div onClick={(e) =>
+                  insertAlink()
+                }>リンク挿入</div>
+              </div>
+
+
+              <textarea value={description} onChange={(e) => setDescription(e.target.value)} name="description" rows={15} placeholder="" id="text_area"  required></textarea>
+            </div>
+
+            <button className="post_button">編集</button>
+          </form>
+        </div>
+
+        <div className="singleArticle">
+          <div className="link_toAll">
+            <Link href={`../../`}>一覧に戻る</Link>
+          </div>
+        </div>
+
       </div>
     )
   } else {

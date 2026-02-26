@@ -28,12 +28,17 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <h1 className="page-title">ログイン</h1>
+    <div className="main">
+
+      <h2>ログイン</h2>
+      
       <form onSubmit={handleSubmit}>
+      
         <input value={userID} onChange={(e) => setuserID(e.target.value)} type="text" name="userID" placeholder="ユーザーID" required />
+      
         <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="パスワード" required />
-        <button>ログイン</button>
+      
+        <button className="post_button">ログイン</button>
       </form>
     </div>
   )

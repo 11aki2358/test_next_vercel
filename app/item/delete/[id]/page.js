@@ -1,8 +1,11 @@
 "use client"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import Image from "next/image"
+// import Image from "next/image"
 import useAuth from "../../../utils/useAuth"
+import parse from 'html-react-parser';
+import Link from "next/link"
+
 
 const DeleteItem = (context) => {
   const [title, setTitle] = useState("")
@@ -29,10 +32,12 @@ const DeleteItem = (context) => {
       setuserID(singleItem.userID)
     }
     getSingleItem()
+    
   }, [context])
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
     const params = await context.params
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/delete/${params.id}`, {
@@ -47,6 +52,7 @@ const DeleteItem = (context) => {
         })
       })
       const jsonData = await response.json()
+
       alert(jsonData.message)
       router.push("/")
       router.refresh()
@@ -55,18 +61,55 @@ const DeleteItem = (context) => {
     }
   }
 
+
   if (loginUseruserID === userID) {
+
+    const params = context.params;
+
     return (
-      <div>
-        <h1 className="page-title">アイテム削除</h1>
-        <form onSubmit={handleSubmit}>
-          <h2>{title}</h2>
-          {/* <Image src={image} width={750} height={500} alt="item-image" priority /> */}
-          <div className="date">投稿日: {postDate}</div>
-          <div className="date">更新日: {editDate}</div>
-          <p>{description}</p>
-          <button>削除</button>
-        </form>
+      <div className="main">
+        <h2>アイテム削除</h2>
+
+        <div className="singleArticle">
+
+          <form onSubmit={handleSubmit}>
+            <h2>{title}</h2>
+
+
+            {/* <Image src={image} width={750} height={500} alt="item-image" priority /> */}
+
+            <div className="date_box">
+              <div className="date">
+                投稿日: {postDate}
+              </div>
+            </div>
+            <div className="date_box">
+              <div className="date">
+                投稿日: {editDate}</div>
+            </div>
+
+            <p>
+              {parse((description.
+                replace(/(\r\n|\r|\n)/g, '<br>')).
+                replaceAll("[[", "<a href=\" ").
+                replaceAll("]]", ` \" target="_blank" rel="noreferrer noopener">link</a>`))}
+            </p>
+
+            <div>
+              <b>マジで削除するの???</b>
+            </div>
+            <button className="delete_button">
+              削除
+            </button>
+          </form>
+
+
+          <div className="link_toAll">
+            <Link href={`../../`}>一覧に戻る</Link>
+          </div>
+
+        </div>
+
       </div>
     )
   } else {

@@ -1,6 +1,7 @@
 // import Image from "next/image";
 import Link from "next/link";
 import React, { Fragment } from 'react';
+import parse from 'html-react-parser';
 
 const getSingleItem = async (id) => {
 
@@ -18,12 +19,6 @@ const ReadSingleItem = async (context) => {
 
   const params = await context.params;
   const singleItem = await getSingleItem(params.id);
-
-  // 改行
-  let description_br = singleItem.description.split(/(\n)/).map((item, index) => {
-    return <Fragment key={index}>{item.match(/\n/) ? <br /> : item}</Fragment>;
-  });
-
 
   return (
     <div className="main">
@@ -48,9 +43,10 @@ const ReadSingleItem = async (context) => {
         </div>
 
         <div id="description_area">
-          <p >
-            {description_br}
-          </p>
+          {parse((singleItem.description.
+            replace(/(\r\n|\r|\n)/g, '<br>')).
+            replaceAll("[[", "<a href=\" ").
+            replaceAll("]]", ` \" target="_blank" rel="noreferrer noopener">link</a>`))}
         </div>
 
         <div className="link_toAll">
@@ -65,7 +61,6 @@ const ReadSingleItem = async (context) => {
           </div>
         </div>
       </div>
-
     </div>
   )
 }

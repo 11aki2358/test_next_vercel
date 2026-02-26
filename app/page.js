@@ -1,5 +1,6 @@
 import Link from "next/link"
 // import Image from "next/image"
+import parse from 'html-react-parser';
 
 const getAllItems = async () => {
 
@@ -52,7 +53,7 @@ const ReadAllItems = async () => {
             </div>
 
             <div className="content">
-              <p>{item.description.substring(0, 200)}...</p>
+              {parse((item.description.replace(/(\r\n|\r|\n)/g, '<br>')).replaceAll("[[", "<a href=\" ").replaceAll("]]", ` \" target="_blank" rel="noreferrer noopener">link</a>`).substring(0, 120))}...
             </div>
 
             <div className="link_toSingle">

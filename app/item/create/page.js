@@ -7,8 +7,8 @@ import Link from "next/link";
 
 function insertAlink() {
   var area = document.getElementById('text_area');
-  var text1 = ` <a href="`;
-  var text2 = '" target="_blank" rel="noreferrer noopener">link</a> ';
+  var text1 = " [[ ";
+  var text2 = ' ]] ';
 
   //カーソルの開始位置と終了位置を基準に分割
   area.value = area.value.substr(0, area.selectionStart) +
