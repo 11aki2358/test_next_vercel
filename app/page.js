@@ -1,6 +1,7 @@
 import Link from "next/link"
 // import Image from "next/image"
 import parse from 'html-react-parser';
+import.meta
 
 const getAllItems = async () => {
 
@@ -31,56 +32,56 @@ const ReadAllItems = async () => {
 
   return (
 
-    <div className="main">
+      <div className="main">
 
-      <div className="main_back"> </div>
+        <div className="main_back"> </div>
 
-      <div>
-        <p>
-          ブログのような日記のような。<br></br>
-          のびのびやってます。
-        </p>
-      </div>
-
-      {allItems.map(item =>
-        <div key={item._id} className="article">
-
-          <h2>
-            <Link href={`./item/readsingle/${item._id}`}>
-              {item.title}
-            </Link>
-          </h2>
-
-          {/* <Image src={item.image} width={750} height={500} alt="item-image" priority /> */}
-          <div>
-
-            <div className="date_box">
-              <div className="date">投稿日: {item.postDate}</div>
-            </div>
-
-            <div className="date_box">
-              <div className="date">更新日: {item.editDate}</div>
-            </div>
-
-            <div className="content">
-              {parse((item.description.replace(/(\r\n|\r|\n)/g, '<br>')).replaceAll("[[", "<a href=\" ").replaceAll("]]", ` \" target="_blank" rel="noreferrer noopener">link</a>`).substring(0, 120))}...
-            </div>
-
-            <div className="link_toSingle">
-              <Link href={`./item/readsingle/${item._id}`}>
-                view more
-              </Link>
-            </div>
-
-          </div>
-          {/* </Link> */}
+        <div>
+          <p>
+            ブログのような日記のような。<br></br>
+            のびのびやってます。
+          </p>
         </div>
 
-      )
-      }
+        {allItems.map(item =>
+          <div key={item._id} className="article">
 
-    </div >
-  )
+            <h2>
+              <Link href={`./item/readsingle/${item._id}`}>
+                {item.title}
+              </Link>
+            </h2>
+
+            {/* <Image src={item.image} width={750} height={500} alt="item-image" priority /> */}
+            <div>
+
+              <div className="date_box">
+                <div className="date">投稿日: {item.postDate}</div>
+              </div>
+
+              <div className="date_box">
+                <div className="date">更新日: {item.editDate}</div>
+              </div>
+
+              <div className="content">
+                {parse((item.description.replace(/(\r\n|\r|\n)/g, '<br>')).replaceAll("[[", "<a href=\" ").replaceAll("]]", ` \" target="_blank" rel="noreferrer noopener">link</a>`).substring(0, 120))}...
+              </div>
+
+              <div className="link_toSingle">
+                <Link href={`./item/readsingle/${item._id}`}>
+                  view more
+                </Link>
+              </div>
+
+            </div>
+            {/* </Link> */}
+          </div>
+
+        )
+        }
+
+      </div >
+      )
 }
 
-export default ReadAllItems
+      export default ReadAllItems
