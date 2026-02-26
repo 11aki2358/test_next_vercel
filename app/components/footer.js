@@ -7,6 +7,9 @@ const Footer = () => {
         <li>
           <Link href="/user/login">ログイン</Link>
         </li>
+        <li>
+          <Link href="/user/login">ログイン</Link>
+        </li>
       </ul>
     </footer>
   )

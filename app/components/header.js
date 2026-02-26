@@ -15,6 +15,7 @@ const Header = () => {
         <ul>
           {/* <li><Link href="/user/register">登録</Link></li> */}
           {/* <li><Link href="/user/login">ログイン</Link></li> */}
+          <li><Link href="https://ryko-ryko.vercel.app/index.html">本サイト(Ryko: Ryko)</Link></li>
           <li><Link href="/item/create">投稿</Link></li>
         </ul>
       </nav>
