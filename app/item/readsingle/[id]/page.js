@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import React, { Fragment } from 'react';
 
 const getSingleItem = async (id) => {
   console.log(id);
@@ -16,6 +17,11 @@ const ReadSingleItem = async (context) => {
 
   const params = await context.params;
   const singleItem = await getSingleItem(params.id);
+
+  let description_br = singleItem.description.split(/(\n)/).map((item, index) => {
+    return <Fragment key={index}>{item.match(/\n/) ? <br /> : item}</Fragment>;
+  });
+
   return (
     <div>
       <div>
@@ -26,8 +32,8 @@ const ReadSingleItem = async (context) => {
         <div className="date">投稿日: {singleItem.postDate}</div>
         <div className="date">更新日: {singleItem.editDate}</div>
         <hr></hr>
-        <p>
-          {singleItem.description}
+        <p id="description_area">
+          {description_br}
         </p>
         <div>
           <Link href={`/item/update/${singleItem._id}`}>編集</Link>

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "../../../../utils/database";
 import { ItemModel } from "../../../../utils/schemaModels";
+import { Temporal } from 'temporal-polyfill';
 
 export async function PUT(request, context) {
   const reqBody = await request.json();
@@ -12,10 +13,16 @@ export async function PUT(request, context) {
     const singleItem = await ItemModel.findById(params.id);
     if (singleItem.userID === reqBody.userID) {
 
-      var now = new Date();
-      var nowTime = now.toLocaleString();
-      // var now_time = nowTime;
-      reqBody.editDate = nowTime;
+      const now = Temporal.Now.instant(); //  ExactTime / タイムスタンプ
+      const TokyoTime = Temporal.Instant.from(now).toZonedDateTimeISO("Asia/Tokyo"); //  タイムゾーン(東京)の時刻に変換
+      reqBody.editDate = TokyoTime.toLocaleString("ja-jp", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
 
       await ItemModel.updateOne({ _id: params.id }, reqBody);
 

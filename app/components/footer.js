@@ -1,7 +1,13 @@
+import Link from "next/link"
+
 const Footer = () => {
   return (
     <footer>
-      <p>Ryko: Ryko</p>
+      <ul>
+        <li>
+          <Link href="/user/login">ログイン</Link>
+        </li>
+      </ul>
     </footer>
   )
 }
