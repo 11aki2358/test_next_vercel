@@ -52,7 +52,7 @@ const ReadAllItems = async () => {
             </div>
 
             <div className="content">
-              <p>{item.description.substring(0, 80)}...</p>
+              <p>{item.description.substring(0, 200)}...</p>
             </div>
 
             <div className="link_toSingle">

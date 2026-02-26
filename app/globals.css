@@ -26,9 +26,12 @@ body {
 /* Header.js */
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   padding-left: 1rem;
   padding-right: 1rem;
-  /* background-color: antiquewhite; */
+  background-color: var(--type1-base-color);
 }
 
 h1 {
