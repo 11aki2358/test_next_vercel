@@ -15,7 +15,6 @@ export async function proxy(request) {
   try {
     const secretKey = new TextEncoder().encode("next-market-app-book")
     const decodedJwt = await jwtVerify(token, secretKey)
-    console.log(decodedJwt);
   
     return NextResponse.next()
   } catch {

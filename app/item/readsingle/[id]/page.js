@@ -15,13 +15,14 @@ const getSingleItem = async (id) => {
 }
 
 const ReadSingleItem = async (context) => {
-  console.log(context);
 
   const params = await context.params;
   const singleItem = await getSingleItem(params.id);
 
   return (
+
     <div className="main">
+      <div className="main_back"> </div>
 
       {/* <div> */}
       {/* <Image src={singleItem.image} width={750} height={500} alt="item_image" priority /> */}

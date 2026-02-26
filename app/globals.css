@@ -8,7 +8,7 @@
   --type1-link-color1: var(--type1-main-color);
 }
 
-html{
+html {
   height: 100%;
   scroll-behavior: smooth;
   margin: 0;
@@ -23,12 +23,11 @@ html{
 }
 
 
-
 body {
   margin: 0;
   height: 100%;
   display: grid;
-  grid-template-rows: 6rem auto 4rem;
+  grid-template-rows: 7rem auto 4rem;
   grid-template-columns: 100%;
   grid-auto-flow: column;
 }
@@ -40,13 +39,13 @@ body {
 body header {
   grid-row: 1 /3;
   grid-column: 1/1;
-  width: 90vw;
+  width: 100vw;
   position: fixed;
   height: 6.5rem;
   z-index: 10;
   background-color: var(--type1-base-color);
   /* background-color: antiquewhite; */
-  
+
   max-width: 1000px;
   padding-left: 1rem;
 }
@@ -117,7 +116,7 @@ body footer {
   right: 0;
   left: 0;
   padding-right: 1rem;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 footer ul li {
@@ -180,19 +179,22 @@ a {
 
 
 .article a,
-.singleArticle a{
+.singleArticle a {
   color: var(--type1-main-color);
   font-weight: bold;
 }
 
 /* いちらんページ */
 
+
+.main p,
 .article {
   /* background-color: antiquewhite; */
   margin: 1.5rem;
   margin-left: 0;
   padding-left: 1rem;
   border-left: black solid 2px;
+  background-color: #fff;
 }
 
 
@@ -222,10 +224,12 @@ a {
 /* readSingle */
 
 .singleArticle {
-  margin: 1.5rem;
+  /* margin: 1.5rem; */
+  padding: 1.5rem;
+  background-color: #fff;
 }
 
-.singleArticle a{
+.singleArticle a {
   color: var(--type1-main-color);
 }
 
@@ -248,46 +252,46 @@ a {
 /* 投稿/編集 */
 
 .input_title h3,
-.input_main h3{
+.input_main h3 {
   margin-bottom: .2rem;
 }
 
 .input_title input,
-.input_main textarea{
+.input_main textarea {
   width: 90%;
 
 }
 
-.insertAlink{
+.insertAlink {
   display: flex;
   margin: .2rem;
   width: 90%;
 }
 
-.insertAlink div{
+.insertAlink div {
   width: max-content;
   margin-left: auto;
   padding: .2rem;
   border: black solid;
 }
 
-.insertAlink:hover{
+.insertAlink:hover {
   cursor: pointer;
 }
 
-.post_button{
+.post_button {
   padding: .2rem .5rem;
   background-color: var(--type1-main-color);
   border: black solid;
   font-weight: bold;
 }
 
-.post_button:hover{
+.post_button:hover {
   cursor: pointer;
 }
 
 
-.delete_button{
+.delete_button {
   padding: .2rem .5rem;
   background-color: black;
   border: black solid;
@@ -295,6 +299,31 @@ a {
   color: white;
 }
 
-.post_button:hover{
+.post_button:hover {
   cursor: pointer;
+}
+
+.main_back {
+  z-index: -10;
+  background-color: #f78e1e;
+  /* width: 100vw; */
+  /* height: 5rem; */
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 6rem;
+  bottom: 0;
+
+  /* background-color: black;
+  background-image: linear-gradient(0deg, #fff 50%, transparent 50%);
+  background-size: 5vh 5vh; */
+
+  background: /* 1 */
+		var(--pattern, 
+			radial-gradient(closest-side, #777, #fff) 
+				0/ 1em 1em space), 
+		var(--map, 
+			linear-gradient(0deg, #888, #fff));
+	background-blend-mode: multiply /* 2 */;
+	filter: contrast(21) /* 3 */
 }

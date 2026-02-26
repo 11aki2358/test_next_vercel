@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <ul>
         <li>
-          <Link href="/user/login">ログイン</Link>
+          <Link href="https://ryko-ryko.vercel.app/index.html" target="_blank">Ryko: Ryko(メインのサイト)</Link>
         </li>
         <li>
           <Link href="/user/login">ログイン</Link>

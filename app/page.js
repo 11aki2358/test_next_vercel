@@ -32,6 +32,16 @@ const ReadAllItems = async () => {
   return (
 
     <div className="main">
+
+      <div className="main_back"> </div>
+
+      <div>
+        <p>
+          ブログのような日記のような。<br></br>
+          のびのびやってます。
+        </p>
+      </div>
+
       {allItems.map(item =>
         <div key={item._id} className="article">
 

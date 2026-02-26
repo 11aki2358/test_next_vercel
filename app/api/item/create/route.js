@@ -6,10 +6,8 @@ import { Temporal } from 'temporal-polyfill';
 export async function POST(request) {
 
   const reqBody = await request.json();
-  // console.log(reqBody);
 
   try {
-    // console.log(await request.json());
     await connectDB();
 
     const now = Temporal.Now.instant(); //  ExactTime / タイムスタンプ
