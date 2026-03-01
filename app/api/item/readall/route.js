@@ -12,7 +12,6 @@ export async function GET() {
   } catch {
     return NextResponse.json({ message: "アイテム読取り失敗(all)" });
   }
-
 }
 
 export const revalidate = 0;
